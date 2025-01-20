@@ -2,11 +2,11 @@ import {Sequelize} from "sequelize";
 
 export default ()=>{
   const sequelize = new Sequelize(
-    'tour_project',
-    'root',
-    '',
+    process.env.DTB_NAME,
+    process.env.DTB_USERNAME,
+    process.env.DTB_PASSWORD,
      {
-       host: 'localhost',
+       host: process.env.DTB_HOST,
        dialect: 'mysql'
      }
    );
