@@ -9,8 +9,8 @@ const port: number = 3000;
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 
-import connectDTB from "./config/connectDTB";
-connectDTB();
+import sequelize from "./config/connectDTB";
+sequelize;
 
 app.get("/tours", (req: Request, res: Response) => {
   res.render("client/pages/tours/index",{
