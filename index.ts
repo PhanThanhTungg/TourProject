@@ -12,9 +12,12 @@ app.set('view engine', 'pug');
 import sequelize from "./config/connectDTB";
 sequelize;
 
-app.get("/tours", (req: Request, res: Response) => {
+import Tour from "./model/tour.model";
+app.get("/tours",async (req: Request, res: Response) => {
+  const tours = await Tour.findAll({raw: true});
   res.render("client/pages/tours/index",{
-    pageTitle:"Trang chủ"
+    pageTitle:"Trang chủ",
+    tours: tours
   });
 });
 
