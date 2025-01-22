@@ -6,6 +6,9 @@ dotenv.config();
 const app: Express = express();
 const port: number = 3000;
 
+import moment from "moment";
+app.locals.moment = moment;
+
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 

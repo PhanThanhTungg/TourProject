@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
+include ../../mixins/moment.pug
 
 block main
   .tour-detail
@@ -17,7 +18,8 @@ block main
             <i class="fa-solid fa-barcode"></i> Mã tour: #{tourDetail.code}
 
           .inner-time-start
-            <i class="fa-solid fa-calendar-days"></i> Lịch khởi hành: #{tourDetail.timeStart}
+            <i class="fa-solid fa-calendar-days"></i> Lịch khởi hành: 
+            +formatDateTime(tourDetail.timeStart)
 
           .inner-stock
             <i class="fa-solid fa-person-walking-luggage"></i> Còn lại: #{tourDetail.stock} chỗ
