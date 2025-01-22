@@ -31,3 +31,23 @@ export const index = async(req:Request, res:Response):Promise<void>=>{
     tours: tours
   });
 }
+
+export const detail =async(req:Request, res:Response):Promise<void> =>{
+  const tour = await Tour.findOne({
+    where:{
+      slug: req.params.slugTour,
+      deleted: false,
+      status: "active"
+    },
+    raw: true
+  });
+
+  if(tour["images"]) tour["images"] = JSON.parse(tour["images"]);
+  tour["price_special"] = tour["price"]*(1-tour["discount"]/100);
+
+  res.render("client/pages/tours/detail", {
+    pageTitle: "Chi tiết tour",
+    tourDetail: tour
+  });
+
+}
