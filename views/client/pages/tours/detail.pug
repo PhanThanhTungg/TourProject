@@ -8,9 +8,20 @@ block main
       .row
         .col-6
           .inner-images
-            each image in tourDetail.images
-              .inner-image
-                img(src=image)
+            .swiper.mySwiper2
+              .swiper-wrapper
+                each image in tourDetail.images
+                  .swiper-slide
+                    .inner-image
+                      img(src=image)
+              .swiper-button-next
+              .swiper-button-prev
+            .swiper.mySwiper 
+              .swiper-wrapper
+                each image in tourDetail.images
+                  .swiper-slide
+                    .inner-image
+                      img(src=image)
         .col-6
           .inner-title #{tourDetail.title}
 
@@ -55,4 +66,4 @@ block main
           .inner-infomation
             .inner-label Lịch trình tour
             .inner-text
-              | #{tourDetail.schedule}
+              | #{tourDetail.schedule} 
