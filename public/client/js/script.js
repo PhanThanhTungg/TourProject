@@ -8,7 +8,6 @@ const alertAddCartSusscess = () => {
     }, 3000);
   }
 }
-
 // End alert-add-cart-susscess
 
 // update quantity for mini-cart 
@@ -20,7 +19,6 @@ const showMiniCart = ()=>{
   }
 }
 showMiniCart();
-
 // end-update quantity for mini-cart
 
 
