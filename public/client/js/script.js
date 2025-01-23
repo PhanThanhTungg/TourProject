@@ -11,6 +11,18 @@ const alertAddCartSusscess = () => {
 
 // End alert-add-cart-susscess
 
+// update quantity for mini-cart 
+const showMiniCart = ()=>{
+  const miniCart = document.querySelector("[mini-cart]");
+  if(miniCart) {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    miniCart.innerHTML = cart.length;
+  }
+}
+showMiniCart();
+
+// end-update quantity for mini-cart
+
 
 const cart = localStorage.getItem("cart");
 if(!cart) localStorage.setItem("cart", JSON.stringify([]));
@@ -32,6 +44,7 @@ if(formAddToCart){
       });
       localStorage.setItem("cart", JSON.stringify(cart));
       alertAddCartSusscess();
+      showMiniCart();
     }
   })
 }
