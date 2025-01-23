@@ -1,3 +1,17 @@
+// alert-add-cart-susscess
+const alertAddCartSusscess = () => {
+  const elementAlert = document.querySelector("[alert-add-cart-susscess]");
+  if(elementAlert) {
+    elementAlert.classList.remove("alert-hidden");
+    setTimeout(() => {
+      elementAlert.classList.add("alert-hidden");
+    }, 3000);
+  }
+}
+
+// End alert-add-cart-susscess
+
+
 const cart = localStorage.getItem("cart");
 if(!cart) localStorage.setItem("cart", JSON.stringify([]));
 
@@ -17,6 +31,8 @@ if(formAddToCart){
         quantity: parseInt(quantity)
       });
       localStorage.setItem("cart", JSON.stringify(cart));
+      alertAddCartSusscess();
     }
   })
 }
+
