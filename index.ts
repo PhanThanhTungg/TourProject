@@ -9,6 +9,9 @@ const port: number = 3000;
 import moment from "moment";
 app.locals.moment = moment;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 

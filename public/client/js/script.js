@@ -15,16 +15,12 @@ const showMiniCart = ()=>{
   const miniCart = document.querySelector("[mini-cart]");
   if(miniCart) {
     const cart = JSON.parse(localStorage.getItem("cart"));
-    miniCart.innerHTML = cart.length;
+    miniCart.innerHTML = cart.length || "0";
   }
 }
-showMiniCart();
-// end-update quantity for mini-cart
-
-
 const cart = localStorage.getItem("cart");
 if(!cart) localStorage.setItem("cart", JSON.stringify([]));
-
+// end-update quantity for mini-cart
 
 const formAddToCart = document.querySelector("[form-add-to-cart]");
 if(formAddToCart){
@@ -46,4 +42,6 @@ if(formAddToCart){
     }
   })
 }
+
+showMiniCart();
 
