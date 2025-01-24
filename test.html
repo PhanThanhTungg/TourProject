@@ -8,10 +8,18 @@
 <body>
   <h1>12321</h1>
   <script>
-    let a = [5,2,3];
-    let b = a.findIndex(item=> item==5);
-    b = 1;
-    a.forEach(item=>console.log(item))
+    const a = [{
+      name: "tung",
+      age: 18
+    },
+    {
+      name:"tung2",
+      age: 19
+    }]
+
+    const b = a.find(item=>item.name=="tung");
+    b.name="tung1"
+    console.log(a);
   </script>
 </body>
 </html>

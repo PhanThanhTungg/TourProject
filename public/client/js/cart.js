@@ -39,6 +39,26 @@ const insertDataToCart = ()=>{
           })
         })
         // end delete item
+
+        // update quantity 
+        const listInputQuantity = document.querySelectorAll("[table-cart] input[name='quantity']");
+
+        listInputQuantity.forEach(input => {
+          input.addEventListener("change", () => {
+            const quantity = parseInt(input.value);
+            if(quantity > 0) {
+              const tourId = input.getAttribute("item-id");
+              const cart = JSON.parse(localStorage.getItem("cart"));
+              const existItem = cart.find(item => item.tourId == tourId);
+              if(existItem) {
+                existItem.quantity = quantity;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                insertDataToCart();
+              }
+            }
+          })
+        })
+        // end update quantity
       })
 
   }
