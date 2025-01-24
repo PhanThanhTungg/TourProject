@@ -8,7 +8,6 @@ const insertDataToCart = ()=>{
     })
       .then(res => res.json())
       .then(data =>{
-        console.log(data.tours)
         const htmlStr = data.tours.map((item, index)=>`
           <tr>
             <td>${index+1}</td>
@@ -26,9 +25,28 @@ const insertDataToCart = ()=>{
         if(totalPrice) {
           totalPrice.innerHTML = data.total.toLocaleString();
         }
+         
+        // delete item
+        const listButtonDelete = document.querySelectorAll("[btn-delete]");
+        listButtonDelete.forEach(button => {
+          button.addEventListener("click", () => {
+            console.log("1");
+            const tourId = button.getAttribute("btn-delete");
+            const cart = JSON.parse(localStorage.getItem("cart"));
+            const newCart = cart.filter(item => item.tourId != tourId);
+            localStorage.setItem("cart", JSON.stringify(newCart));
+            insertDataToCart();
+          })
+        })
+        // end delete item
       })
 
   }
 }
 
 insertDataToCart();
+
+
+
+
+
