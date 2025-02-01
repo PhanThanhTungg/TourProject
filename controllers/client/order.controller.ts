@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import Order from "../../model/order.model";
+import Tour from "../../model/tour.model";
+import OrderItem from "../../model/order-item.model";
 
 export const index = async (req: Request, res: Response) => {
   const info = req.body.info;
@@ -25,6 +27,29 @@ export const index = async (req: Request, res: Response) => {
       id: orderId
     }
   });
+
+  for(const item of cart){
+    const dataItem = {
+      orderId: parseInt(orderId),
+      tourId: parseInt(item.tourId),
+      quantity: item.quantity,
+    };
+
+    const tourInfo = await Tour.findOne({
+      where: {
+        id: parseInt(item.tourId),
+        deleted: false,
+        status: "active"
+      },
+      raw: true
+    });
+
+    dataItem["price"] = tourInfo["price"];
+    dataItem["discount"] = tourInfo["discount"];
+    dataItem["timeStart"] = tourInfo["timeStart"];
+
+    await OrderItem.create(dataItem);
+  }
 
 
   res.json({
