@@ -9,6 +9,9 @@ const port: number = 3000;
 import moment from "moment";
 app.locals.moment = moment;
 
+import { systemConfig } from "./config/system";
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
