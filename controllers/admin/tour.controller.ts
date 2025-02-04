@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Tour from "../../model/tour.model";
+import Category from "../../model/category.model";
 
 export const index = async (req: Request, res: Response) => { 
   // SELECT * FROM tours WHERE deleted = false;
@@ -23,3 +24,19 @@ export const index = async (req: Request, res: Response) => {
     tours: tours
   });
 }; 
+
+export const createGET = async (req: Request, res: Response) => {
+  // SELECT * FROM categories WHERE deleted = false AND status = "active";
+  const categories = await Category.findAll({
+    where: {
+      deleted: false,
+      status: 'active',
+    },
+    raw: true
+  });
+
+  res.render("admin/pages/tours/create", {
+    pageTitle: "Thêm mới tour",
+    categories: categories
+  });
+};
