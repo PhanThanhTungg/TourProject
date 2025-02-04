@@ -20,6 +20,9 @@ app.use(express.static(`${__dirname}/public`));
 import clientRoute from "./routes/client/index.route";
 clientRoute(app);
 
+import adminRoute from "./routes/admin/index.route";
+adminRoute(app);
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
