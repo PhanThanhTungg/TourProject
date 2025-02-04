@@ -6,5 +6,6 @@ import * as controller from "../../controllers/admin/tour.controller";
 router.get("/", controller.index);
 
 router.get("/create", controller.createGET);
+router.post("/create", controller.createPOST);
 
 export default router;

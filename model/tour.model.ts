@@ -1,7 +1,8 @@
 import {DataTypes } from "sequelize";
 import sequelize from "../config/connectDTB";
+import slugify from "slugify";
 
-export default sequelize.define("Tour",{
+const Tour = sequelize.define("Tour",{
   id:{
     type: DataTypes.INTEGER,
     autoIncrement: true, //default: false
@@ -44,7 +45,7 @@ export default sequelize.define("Tour",{
   },
   slug: {
     type: DataTypes.STRING(255),
-    allowNull: false,
+    allowNull: true,
   },
   deleted: {
     type: DataTypes.BOOLEAN,
@@ -57,3 +58,12 @@ export default sequelize.define("Tour",{
   tableName:"tours",
   timestamps: true // tự động quản lý createdAt, updatedAt
 });
+
+Tour.beforeCreate(tour =>{
+  tour["slug"] = slugify(`${tour["title"]}-${Date.now()}`,{
+    lower: true,
+    strict: true
+  })
+})
+
+export default Tour;
