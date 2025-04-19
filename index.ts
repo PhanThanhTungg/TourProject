@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app: Express = express();
-const port: number = 3000;
+const port: number = +process.env.PORT;
 
 import moment from "moment";
 app.locals.moment = moment;
